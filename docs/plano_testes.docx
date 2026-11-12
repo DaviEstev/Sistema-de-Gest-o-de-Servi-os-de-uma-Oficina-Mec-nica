@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p><w:r><w:t>Plano de testes - Sistema de gestão de oficina mecânica</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Objetivo: validar autenticação, agendamento, filtros, permissões e histórico.</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Cenário 1: cadastro permitido</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Cenário 2: conflito de horário</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Cenário 3: atualização que gera conflito</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Dados usados: usuários admin/mecanico, clientes e veículos do seed SQL.</w:t></w:r></w:p>
+  </w:body>
+</w:document>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p><w:r><w:t>Resultados dos testes - Status em ambiente sem banco MySQL e interface executável</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Cenário 1: pendente - não executado no ambiente disponível.</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Cenário 2: pendente - não executado no ambiente disponível.</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Cenário 3: pendente - não executado no ambiente disponível.</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Conclusão: os cenários encontram-se preparados para execução manual quando o ambiente MySQL e PHP estiverem ativos.</w:t></w:r></w:p>
+  </w:body>
+</w:document>
