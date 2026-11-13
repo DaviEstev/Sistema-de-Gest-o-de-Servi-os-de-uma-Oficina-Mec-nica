@@ -4,7 +4,7 @@ require_once __DIR__ . '/repositories/ClientRepository.php';
 require_once __DIR__ . '/repositories/VehicleRepository.php';
 require_once __DIR__ . '/repositories/ServiceOrderRepository.php';
 require_once __DIR__ . '/repositories/UserRepository.php';
-require_once __DIR__ . '/controllers/ServiceOrderController.php';
+require_once __DIR__ . '/services/ServiceOrderService.php';
 
 requireAuth();
 
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($action === 'delete') {
         requireRole(['admin']);
-        $result = (new ServiceOrderController())->delete((int) ($_POST['id'] ?? 0), (int) $user['id'], $user['role']);
+        $result = (new ServiceOrderService())->deleteOrder((int) ($_POST['id'] ?? 0), (int) $user['id'], $user['role']);
     } elseif ($action === 'update') {
         requireRole(['admin', 'mechanic']);
         $orderId = (int) ($_POST['id'] ?? 0);
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['flash_type'] = 'error';
             redirect('ordens_servico.php');
         }
-        $result = (new ServiceOrderController())->update($orderId, $payload, (int) $user['id']);
+        $result = (new ServiceOrderService())->updateOrder($orderId, $payload, (int) $user['id']);
     } else {
         requireRole(['admin', 'mechanic']);
         $payload = $_POST;
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['flash_type'] = 'error';
             redirect('ordens_servico.php');
         }
-        $result = (new ServiceOrderController())->store($payload, (int) $user['id']);
+        $result = (new ServiceOrderService())->createOrder($payload, (int) $user['id']);
     }
 
     $_SESSION['flash_message'] = $result['message'];
@@ -182,7 +182,7 @@ unset($_SESSION['flash_message'], $_SESSION['flash_type']);
                                 <td><?php echo htmlspecialchars($order['status'] ?? 'agendado', ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td>
                                     <?php if ($user['role'] === 'admin'): ?>
-                                        <form method="post" action="ordens_servico.php" onsubmit="return confirm('Deseja excluir esta ordem?');">
+                                        <form method="post" action="ordens_servico.php">
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="id" value="<?php echo (int) $order['id']; ?>">
                                             <button type="submit" class="btn btn-danger">Excluir</button>
@@ -202,6 +202,5 @@ unset($_SESSION['flash_message'], $_SESSION['flash_type']);
             </div>
         </section>
     </main>
-    <script src="assets/js/app.js"></script>
 </body>
 </html>

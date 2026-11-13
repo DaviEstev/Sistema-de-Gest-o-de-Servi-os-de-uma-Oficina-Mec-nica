@@ -2,15 +2,29 @@
 require_once __DIR__ . '/config/bootstrap.php';
 require_once __DIR__ . '/repositories/ClientRepository.php';
 require_once __DIR__ . '/repositories/VehicleRepository.php';
-require_once __DIR__ . '/controllers/VehicleController.php';
 
 requireAuth();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     requireRole(['admin']);
-    $result = (new VehicleController())->store($_POST);
-    $_SESSION['flash_message'] = $result['message'];
-    $_SESSION['flash_type'] = $result['success'] ? 'success' : 'error';
+    $clientId = (int) ($_POST['client_id'] ?? 0);
+
+    if ($clientId <= 0 || ClientRepository::findById($clientId) === null) {
+        $_SESSION['flash_message'] = 'Selecione um cliente válido.';
+        $_SESSION['flash_type'] = 'error';
+    } else {
+        VehicleRepository::create([
+            'client_id' => $clientId,
+            'brand' => trim((string) ($_POST['brand'] ?? '')),
+            'model' => trim((string) ($_POST['model'] ?? '')),
+            'plate' => strtoupper(trim((string) ($_POST['plate'] ?? ''))),
+            'year' => trim((string) ($_POST['year'] ?? '')),
+            'color' => trim((string) ($_POST['color'] ?? '')),
+        ]);
+        $_SESSION['flash_message'] = 'Veículo cadastrado com sucesso.';
+        $_SESSION['flash_type'] = 'success';
+    }
+
     redirect('veiculos.php');
 }
 

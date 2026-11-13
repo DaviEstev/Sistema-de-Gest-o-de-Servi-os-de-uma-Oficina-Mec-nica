@@ -1,8 +1,8 @@
 USE oficina_mecanica;
 
-INSERT INTO users (name, username, password_hash, role) VALUES
-('Administrador', 'admin', '$2y$10$72QhktjEv3Ar1vX2JYTX0u2q4dA8vfB8M9R7f5R3A7oJt4HhV4F0K', 'admin'),
-('Mecânico', 'mecanico', '$2y$10$08f9kLoQioOUItM/5KQz0.5xkQhDMgKt89b2w8R3ZrwsC8wUjD5mW', 'mechanic')
+INSERT INTO users (name, username, password, role) VALUES
+('Administrador', 'admin', 'admin123', 'admin'),
+('Mecânico', 'mecanico', 'mecanico123', 'mechanic')
 ON DUPLICATE KEY UPDATE username = VALUES(username);
 
 INSERT INTO clients (name, document, phone, email, address)

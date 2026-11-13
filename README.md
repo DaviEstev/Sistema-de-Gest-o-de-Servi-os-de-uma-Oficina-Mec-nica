@@ -1,27 +1,37 @@
 # Sistema de Gestão de Serviços de Oficina Mecânica
 
-Projeto PHP com HTML, CSS, MySQL e sessões para controle de autenticação e permissões.
+Aplicação simples feita com PHP, HTML, CSS e MySQL. Não utiliza frameworks nem JavaScript.
 
 ## Estrutura principal
 - config/
-- controllers/
-- models/
 - repositories/
 - services/
-- views/
 - assets/
 - sql/
-- tests/
+- index.php, dashboard.php, clientes.php, veiculos.php e ordens_servico.php
 
 ## Configuração
 1. Crie o banco de dados MySQL seguindo o script em sql/schema.sql.
 2. Execute o seed em sql/seed.sql.
-3. Ajuste as credenciais do banco em config/database.php ou variáveis de ambiente.
+3. Configure as credenciais do banco em config/database.php por meio das variáveis de ambiente DB_HOST, DB_PORT, DB_NAME, DB_USER e DB_PASS.
 4. Acesse index.php para fazer login.
 
 ## Usuários iniciais
 - admin / admin123
 - mecanico / mecanico123
+
+As senhas são armazenadas em texto simples, sem hash. Não use esta configuração em um sistema publicado ou com dados reais.
+
+### Banco criado anteriormente
+Para adaptar um banco que ainda possui a coluna `password_hash`, execute uma vez:
+
+```sql
+ALTER TABLE users CHANGE password_hash password VARCHAR(255) NOT NULL;
+UPDATE users SET password = 'admin123' WHERE username = 'admin';
+UPDATE users SET password = 'mecanico123' WHERE username = 'mecanico';
+```
+
+Altere esses valores para as senhas desejadas antes de usar o sistema.
 
 ## Regras de negócio implementadas
 - Autenticação por sessão.

@@ -1,15 +1,28 @@
 <?php
 require_once __DIR__ . '/config/bootstrap.php';
 require_once __DIR__ . '/repositories/ClientRepository.php';
-require_once __DIR__ . '/controllers/ClientController.php';
 
 requireAuth();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     requireRole(['admin']);
-    $result = (new ClientController())->store($_POST);
-    $_SESSION['flash_message'] = $result['message'];
-    $_SESSION['flash_type'] = $result['success'] ? 'success' : 'error';
+    $name = trim((string) ($_POST['name'] ?? ''));
+
+    if ($name === '') {
+        $_SESSION['flash_message'] = 'Informe o nome do cliente.';
+        $_SESSION['flash_type'] = 'error';
+    } else {
+        ClientRepository::create([
+            'name' => $name,
+            'document' => trim((string) ($_POST['document'] ?? '')),
+            'phone' => trim((string) ($_POST['phone'] ?? '')),
+            'email' => trim((string) ($_POST['email'] ?? '')),
+            'address' => trim((string) ($_POST['address'] ?? '')),
+        ]);
+        $_SESSION['flash_message'] = 'Cliente cadastrado com sucesso.';
+        $_SESSION['flash_type'] = 'success';
+    }
+
     redirect('clientes.php');
 }
 
