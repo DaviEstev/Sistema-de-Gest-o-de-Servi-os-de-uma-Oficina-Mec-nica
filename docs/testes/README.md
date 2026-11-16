@@ -1,11 +1,9 @@
-# Evidências de testes
+# Evidências dos testes
 
-As capturas automáticas não puderam ser executadas neste ambiente porque não há servidor MySQL e nem navegador/servidor PHP configurado para execução do sistema.
+Salve nesta pasta capturas de tela reais, feitas durante a execução do sistema, com os nomes:
 
-Screens necessárias para captura manual:
-- Login com usuário administrador.
-- Cadastro de ordem de serviço com mecânico livre.
-- Tentativa de cadastro com conflito de horário.
-- Tentativa de atualização de ordem em horário ocupado.
+- `cenario1.png` – cadastro permitido;
+- `cenario2.png` – tentativa de cadastro com conflito;
+- `cenario3.png` – tentativa de alteração que gera conflito.
 
-Os arquivos cenario1.png, cenario2.png e cenario3.png foram reservados para esse processo manual.
+As imagens que estavam no ZIP original eram arquivos de texto com extensão PNG, e por isso foram removidas. Não foram criadas imagens artificiais para substituir evidências de execução. Depois de executar cada cenário, capture a tela com a mensagem/resultado apresentado e atualize `resultados.docx`.

@@ -5,7 +5,7 @@ class VehicleRepository
     public static function listAll(): array
     {
         $pdo = getDatabaseConnection();
-        $stmt = $pdo->query('SELECT * FROM vehicles ORDER BY brand, model ASC');
+        $stmt = $pdo->query('SELECT v.*, c.name AS client_name FROM vehicles v INNER JOIN clients c ON c.id = v.client_id ORDER BY v.brand, v.model ASC');
 
         return $stmt->fetchAll();
     }

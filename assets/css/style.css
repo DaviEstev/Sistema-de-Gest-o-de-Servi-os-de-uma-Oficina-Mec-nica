@@ -233,3 +233,45 @@ th {
         width: min(97%, calc(100% - 1rem));
     }
 }
+
+.btn-secondary {
+    background: #64748b;
+    color: #fff;
+}
+
+.btn-small {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.85rem;
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.action-buttons form {
+    margin: 0;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.muted {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+    th, td {
+        white-space: nowrap;
+    }
+}
