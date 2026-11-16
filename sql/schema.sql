@@ -54,11 +54,11 @@ CREATE TABLE IF NOT EXISTS service_orders (
 
 CREATE TABLE IF NOT EXISTS service_order_history (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    order_id INT NOT NULL,
+    order_id INT NULL,
     user_id INT NOT NULL,
     operation VARCHAR(150) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_history_order FOREIGN KEY (order_id) REFERENCES service_orders(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_history_order FOREIGN KEY (order_id) REFERENCES service_orders(id) ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT fk_history_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 

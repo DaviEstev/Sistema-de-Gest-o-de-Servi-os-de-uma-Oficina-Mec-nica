@@ -8,10 +8,11 @@ requireAuth();
 $user = currentUser();
 $clients = ClientRepository::listAll();
 $vehicles = VehicleRepository::listAll();
-$orders = ServiceOrderRepository::listFiltered(['client_name' => ''], 1, 5);
+$dashboardFilters = ['client_name' => ''];
 if ($user['role'] === 'mechanic') {
-    $orders = array_values(array_filter($orders, static fn (array $order) => (int) $order['mechanic_id'] === (int) $user['id']));
+    $dashboardFilters['mechanic_id'] = (int) $user['id'];
 }
+$orders = ServiceOrderRepository::listFiltered($dashboardFilters, 1, 5);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
