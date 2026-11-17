@@ -6,7 +6,7 @@ function getDatabaseConnection(): PDO
     $port = getenv('DB_PORT') ?: '3306';
     $dbname = getenv('DB_NAME') ?: 'oficina_mecanica';
     $user = getenv('DB_USER') ?: 'root';
-    $password = getenv('DB_PASS') ?: '';
+    $password = getenv('DB_PASS') ?: 'root';
 
     $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $host, $port, $dbname);
 
