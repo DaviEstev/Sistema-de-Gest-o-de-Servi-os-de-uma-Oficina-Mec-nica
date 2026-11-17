@@ -1,6 +1,6 @@
 # Sistema de Gestão de Serviços de Oficina Mecânica
 
-Aplicação simples feita com PHP, HTML, CSS e MySQL. Não utiliza frameworks nem JavaScript.
+Aplicação simples feita com PHP, HTML, CSS e MySQL.
 
 ## Estrutura principal
 - config/
